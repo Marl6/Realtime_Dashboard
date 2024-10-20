@@ -2,11 +2,11 @@
 'use client'; // This should be at the top of the file
 
 import Image from "next/image";
-import { TopMovers } from "./components/DailyPrice";
-import { StockVolumePerCompany } from "./components/StockVolume"; // Import the component
-import { Top3IndustryInTermsOfVolume } from "./components/TopIndustry"; // Import the component
-import { AverageStockPricePerIndustryInDollars } from "./components/AveragePrice"; // Import the component
-import { NumberOfCompaniesPerCountry } from "./components/NumCompanies"; // Import the component
+import { FlightData } from "./components/FlightData";
+import { BusiestAirportsBasedOnNumberOfFlights } from "./components/BusiestAirport"; // Import the component
+import { BusiestAirline } from "./components/BusiestAirline"; // Import the component
+import { BusiestDayOfTheWeek } from "./components/BusiestDay"; // Import the component
+import { NUMBEROFFLIGHTS } from "./components/NumberOfFlights"; // Import the component
 import { useState } from "react";
 
 export default function Home() {
@@ -19,67 +19,39 @@ export default function Home() {
 
   return (
     <main className="mx-auto w-full lg:w-3/4 p-4">
-      <h1 className="text-3xl font-bold text-center my-8">Stock Market Dashboard</h1>
-
-      {/* Date Range Filter */}
-      <div className="flex justify-center mb-6">
-        <label className="mx-2">
-          From:
-          <input
-            type="date"
-            name="from"
-            value={dateRange.from}
-            onChange={handleDateChange}
-            className="border border-gray-300 rounded px-2 py-1 ml-2"
-          />
-        </label>
-        <label className="mx-2">
-          To:
-          <input
-            type="date"
-            name="to"
-            value={dateRange.to}
-            onChange={handleDateChange}
-            className="border border-gray-300 rounded px-2 py-1 ml-2"
-          />
-        </label>
-      </div>
+      <h1 className="text-3xl font-bold text-center my-8">Flight Record Dashboard of the Philippines</h1>
 
       {/* Grid layout for charts */}
+
+      <div className="my-8 p-4 bg-white shadow-lg rounded-lg flex justify-between gap-4 w-full">
+        <div className="p-4 bg-white shadow-lg rounded-lg w-full">
+          <h2 className="text-xl font-semibold text-center mb-4">DAILY NUMBER OF FLIGHTS CHART</h2>
+          <NUMBEROFFLIGHTS />
+        </div>
+      </div>
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="p-4 bg-white shadow-lg rounded-lg">
-          <h2 className="text-xl font-semibold text-center mb-4">TOP INDUSTRIES</h2>
-          <Top3IndustryInTermsOfVolume />
+          <h2 className="text-xl font-semibold text-center mb-4">FLIGHTS</h2>
+          <FlightData />
         </div>
 
         <div className="p-4 bg-white shadow-lg rounded-lg">
-          <h2 className="text-xl font-semibold text-center mb-4">TOP COUNTRIES HAVING THE MOST COMPANIES</h2>
-          <NumberOfCompaniesPerCountry />
+          <h2 className="text-xl font-semibold text-center mb-4">BUSIEST AIRPORT</h2>
+          <BusiestAirportsBasedOnNumberOfFlights />
         </div>
       </div>
 
       {/* Table for Stock Volume per Company */}
       <div className="my-8 p-4 bg-white shadow-lg rounded-lg flex justify-between gap-4">
         <div className="w-1/2">
-          <h2 className="text-xl font-semibold text-center mb-4">TOP COMPANIES IN TERMS OF VOLUME </h2>
-          <StockVolumePerCompany />
+          <h2 className="text-xl font-semibold text-center mb-4">BUSIEST AIRLINE </h2>
+          <BusiestAirline />
         </div>
 
         <div className="w-1/2">
-          <h2 className="text-xl font-semibold text-center mb-4">AVERAGE STOCK PRICE PER INDUSTRY IN DOLLARS</h2>
-          <AverageStockPricePerIndustryInDollars />
-        </div>
-      </div>
-
-      <div className="my-8 p-4 bg-white shadow-lg rounded-lg flex justify-between gap-4">
-        <div className="p-4 bg-white shadow-lg rounded-lg">
-          <h2 className="text-xl font-semibold text-center mb-4">TOP MOVERS</h2>
-          <TopMovers />
-        </div>
-
-        <div className="p-4 bg-white shadow-lg rounded-lg">
-          <h2 className="text-xl font-semibold text-center mb-4">Stock Price Chart 1</h2>
-          <TopMovers />
+          <h2 className="text-xl font-semibold text-center mb-4">BUSIEST DAY OF THE WEEK</h2>
+          <BusiestDayOfTheWeek />
         </div>
       </div>
 
