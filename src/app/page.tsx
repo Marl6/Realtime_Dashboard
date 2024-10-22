@@ -7,7 +7,7 @@ import { BusiestAirportsBasedOnNumberOfFlights } from "./components/BusiestAirpo
 import { BusiestAirline } from "./components/BusiestAirline"; // Import the component
 import { BusiestDayOfTheWeek } from "./components/BusiestDay"; // Import the component
 import { NUMBEROFFLIGHTS } from "./components/NumberOfFlights"; // Import the component
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const [dateRange, setDateRange] = useState({ from: "2000-01-01", to: "2024-12-31" });
@@ -17,12 +17,21 @@ export default function Home() {
     setDateRange((prevRange) => ({ ...prevRange, [name]: value }));
   };
 
+  // Effect for automatic refresh
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      // This will refresh the page every 10 seconds
+      window.location.reload();
+    }, 10000); // 10 seconds
+
+    return () => clearInterval(intervalId); // Cleanup on component unmount
+  }, []);
+
   return (
     <main className="mx-auto w-full lg:w-3/4 p-4">
       <h1 className="text-3xl font-bold text-center my-8">Flight Record Dashboard of the Philippines</h1>
 
       {/* Grid layout for charts */}
-
       <div className="my-8 p-4 bg-white shadow-lg rounded-lg flex justify-between gap-4 w-full">
         <div className="p-4 bg-white shadow-lg rounded-lg w-full">
           <h2 className="text-xl font-semibold text-center mb-4">DAILY NUMBER OF FLIGHTS CHART</h2>
