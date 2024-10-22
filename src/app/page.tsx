@@ -11,25 +11,26 @@ import { useState, useEffect } from "react";
 
 export default function Home() {
   const [dateRange, setDateRange] = useState({ from: "2000-01-01", to: "2024-12-31" });
+  const [currentDateTime, setCurrentDateTime] = useState(new Date().toLocaleString()); // State for current date and time
 
   const handleDateChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
     setDateRange((prevRange) => ({ ...prevRange, [name]: value }));
   };
 
-  // Effect for automatic refresh
+  // Effect for updating current date and time
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      // This will refresh the page every 10 seconds
-      window.location.reload();
-    }, 10000); // 10 seconds
+    const dateTimeIntervalId = setInterval(() => {
+      setCurrentDateTime(new Date().toLocaleString()); // Update current date and time every second
+    }, 1000); // 1000 milliseconds = 1 second
 
-    return () => clearInterval(intervalId); // Cleanup on component unmount
+    return () => clearInterval(dateTimeIntervalId); // Cleanup on component unmount
   }, []);
 
   return (
     <main className="mx-auto w-full lg:w-3/4 p-4">
       <h1 className="text-3xl font-bold text-center my-8">Flight Record Dashboard of the Philippines</h1>
+      <p className="text-center mb-4">{currentDateTime}</p> {/* Display current date and time */}
 
       {/* Grid layout for charts */}
       <div className="my-8 p-4 bg-white shadow-lg rounded-lg flex justify-between gap-4 w-full">
