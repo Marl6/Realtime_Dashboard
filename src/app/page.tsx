@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <main className="mx-auto w-full lg:w-3/4 p-4">
       <h1 className="text-3xl font-bold text-center my-8">Flight Record Dashboard of the Philippines</h1>
-      <p className="text-center mb-4">{currentDateTime}</p> {/* Display current date and time */}
+      <p className="text-3xl font-bold text-center my-8">{currentDateTime}</p>
 
       {/* Grid layout for charts */}
       <div className="my-8 p-4 bg-white shadow-lg rounded-lg flex justify-between gap-4 w-full">
